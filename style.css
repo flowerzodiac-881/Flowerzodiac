@@ -1,0 +1,104 @@
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fff;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #111;
+  color: #eee;
+}
+
+.container, header, section, footer {
+  max-width: 800px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+header {
+  background-color: #f9f9f9;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+body.dark header {
+  background-color: #222;
+  border-color: #444;
+}
+
+h1 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2.8rem;
+}
+
+h2 {
+  color: #444;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.3rem;
+}
+
+body.dark h2 {
+  color: #ddd;
+  border-color: #555;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li::before {
+  content: '▸';
+  color: #f57c00;
+  margin-right: 0.5em;
+}
+
+p, li {
+  font-size: 1.1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border: none;
+  background-color: #222;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+body.dark button {
+  background-color: #eee;
+  color: #222;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+body.dark footer {
+  color: #aaa;
+}
+
+.blog {
+  border-top: 2px dashed #ccc;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+body.dark .blog {
+  border-color: #444;
+}
