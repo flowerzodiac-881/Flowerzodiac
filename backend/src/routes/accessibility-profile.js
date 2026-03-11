@@ -84,6 +84,23 @@ router.put('/', authenticate, async (req, res) => {
       }
     }
 
+    // Range validation for numeric fields
+    if (updateData.font_size_multiplier !== undefined) {
+      if (updateData.font_size_multiplier < 0.5 || updateData.font_size_multiplier > 3.0) {
+        return res.status(400).json({ error: 'font_size_multiplier must be between 0.5 and 3.0' });
+      }
+    }
+    if (updateData.pomodoro_work_minutes !== undefined) {
+      if (updateData.pomodoro_work_minutes < 1 || updateData.pomodoro_work_minutes > 120) {
+        return res.status(400).json({ error: 'pomodoro_work_minutes must be between 1 and 120' });
+      }
+    }
+    if (updateData.pomodoro_break_minutes !== undefined) {
+      if (updateData.pomodoro_break_minutes < 1 || updateData.pomodoro_break_minutes > 60) {
+        return res.status(400).json({ error: 'pomodoro_break_minutes must be between 1 and 60' });
+      }
+    }
+
     if (!supabase) {
       return res.json({ ...DEFAULT_PROFILE, ...updateData });
     }

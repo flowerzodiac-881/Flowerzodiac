@@ -60,8 +60,8 @@ function MainTabs() {
 }
 
 function AppContent() {
-  const { onboardingComplete, darkMode } = useProfile();
-  const { isLoadingPreferences, theme: accessibilityTheme } = useAccessibility();
+  const { onboardingComplete } = useProfile();
+  const { isLoadingPreferences, profile } = useAccessibility();
 
   // Flicker prevention: show a neutral dark loading screen while
   // the user's accessibility preferences are being fetched.
@@ -87,9 +87,11 @@ function AppContent() {
     return <OnboardingScreen />;
   }
 
+  // Use pure_dark_mode from the authoritative AccessibilityContext
+  // for the status bar style
   return (
     <>
-      <StatusBar style={darkMode ? 'light' : 'dark'} />
+      <StatusBar style={profile.pure_dark_mode ? 'light' : 'dark'} />
       <NavigationContainer>
         <MainTabs />
       </NavigationContainer>
