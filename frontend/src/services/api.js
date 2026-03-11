@@ -129,6 +129,18 @@ class ApiService {
     return this.request(`/api/journal/${id}`, { method: 'DELETE' });
   }
 
+  // Accessibility Profile
+  async getAccessibilityProfile() {
+    return this.request('/api/accessibility-profile');
+  }
+
+  async updateAccessibilityProfile(settings) {
+    return this.request('/api/accessibility-profile', {
+      method: 'PUT',
+      body: JSON.stringify(settings),
+    });
+  }
+
   // Synesthesia
   async getSynesthesiaMappings() {
     return this.request('/api/preferences/synesthesia/mappings');

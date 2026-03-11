@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import { ProfileProvider, useProfile } from './context/ProfileContext';
+import { AccessibilityProvider, useAccessibility } from './context/AccessibilityContext';
 import { OnboardingScreen } from './screens/OnboardingScreen';
 import { HomeScreen } from './screens/HomeScreen';
 import { TasksScreen } from './screens/TasksScreen';
@@ -60,6 +61,27 @@ function MainTabs() {
 
 function AppContent() {
   const { onboardingComplete, darkMode } = useProfile();
+  const { isLoadingPreferences, theme: accessibilityTheme } = useAccessibility();
+
+  // Flicker prevention: show a neutral dark loading screen while
+  // the user's accessibility preferences are being fetched.
+  // This avoids flashing a bright white / high-motion UI to users
+  // with sensory processing differences.
+  if (isLoadingPreferences) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#121212', // safe dark while loading
+        }}
+        testID="loading-screen"
+      >
+        <ActivityIndicator size="large" color="#BB86FC" />
+      </View>
+    );
+  }
 
   if (!onboardingComplete) {
     return <OnboardingScreen />;
@@ -78,7 +100,9 @@ function AppContent() {
 export default function App() {
   return (
     <ProfileProvider>
-      <AppContent />
+      <AccessibilityProvider>
+        <AppContent />
+      </AccessibilityProvider>
     </ProfileProvider>
   );
 }
