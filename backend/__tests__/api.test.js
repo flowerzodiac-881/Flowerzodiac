@@ -218,5 +218,16 @@ describe('NeuroFlow API', () => {
       expect(res.status).toBe(200);
       expect(res.body.hackerField).toBeUndefined();
     });
+
+    it('PUT /api/accessibility-profile ignores wrong-type values', async () => {
+      const res = await request(app)
+        .put('/api/accessibility-profile')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ pure_dark_mode: 'yes', font_size_multiplier: 'big' });
+      expect(res.status).toBe(200);
+      // Wrong types should be filtered out, defaults remain
+      expect(res.body.pure_dark_mode).toBe(false);
+      expect(res.body.font_size_multiplier).toBe(1.0);
+    });
   });
 });

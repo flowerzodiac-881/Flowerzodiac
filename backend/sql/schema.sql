@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS accessibility_profiles (
 
   -- Learning (Dyslexia / Dyscalculia / Dysgraphia)
   dyslexic_font_enabled BOOLEAN DEFAULT FALSE,
-  font_size_multiplier NUMERIC(3,2) DEFAULT 1.00,
+  font_size_multiplier NUMERIC(3,2) DEFAULT 1.00 CHECK (font_size_multiplier BETWEEN 0.50 AND 3.00),
   tts_enabled BOOLEAN DEFAULT FALSE,
   stt_enabled BOOLEAN DEFAULT FALSE,
   visual_numbers BOOLEAN DEFAULT FALSE,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS learning_preferences (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   font_family VARCHAR(30) DEFAULT 'system',
-  font_size_multiplier NUMERIC(3,2) DEFAULT 1.00,
+  font_size_multiplier NUMERIC(3,2) DEFAULT 1.00 CHECK (font_size_multiplier BETWEEN 0.50 AND 3.00),
   tts_enabled BOOLEAN DEFAULT FALSE,
   stt_enabled BOOLEAN DEFAULT FALSE,
   visual_numbers BOOLEAN DEFAULT FALSE,

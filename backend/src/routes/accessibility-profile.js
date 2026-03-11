@@ -28,8 +28,29 @@ const DEFAULT_PROFILE = {
   gamification_enabled: false,
 };
 
-// Fields that are allowed to be set by the client
-const ALLOWED_FIELDS = new Set(Object.keys(DEFAULT_PROFILE));
+// Fields that are allowed to be set by the client, with their expected types
+const FIELD_TYPES = {
+  pure_dark_mode: 'boolean',
+  motion_reduced: 'boolean',
+  color_palette: 'string',
+  reduce_transparency: 'boolean',
+  dyslexic_font_enabled: 'boolean',
+  font_size_multiplier: 'number',
+  tts_enabled: 'boolean',
+  stt_enabled: 'boolean',
+  visual_numbers: 'boolean',
+  macro_gestures_enabled: 'boolean',
+  large_tap_targets: 'boolean',
+  voice_navigation: 'boolean',
+  undo_confirmation: 'boolean',
+  safe_mode_enabled: 'boolean',
+  confirm_actions: 'boolean',
+  hide_streaks: 'boolean',
+  hide_notifications: 'boolean',
+  pomodoro_work_minutes: 'number',
+  pomodoro_break_minutes: 'number',
+  gamification_enabled: 'boolean',
+};
 
 // GET /api/accessibility-profile
 router.get('/', authenticate, async (req, res) => {
@@ -55,10 +76,10 @@ router.get('/', authenticate, async (req, res) => {
 // PUT /api/accessibility-profile
 router.put('/', authenticate, async (req, res) => {
   try {
-    // Filter out any fields that are not part of the profile
+    // Filter and validate fields
     const updateData = { user_id: req.userId, updated_at: new Date().toISOString() };
     for (const [key, value] of Object.entries(req.body)) {
-      if (ALLOWED_FIELDS.has(key)) {
+      if (key in FIELD_TYPES && typeof value === FIELD_TYPES[key]) {
         updateData[key] = value;
       }
     }
