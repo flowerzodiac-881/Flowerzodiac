@@ -31,9 +31,9 @@ export function TasksScreen() {
             setPomodoroActive(false);
             const nextBreak = !isBreak;
             setIsBreak(nextBreak);
-            setPomodoroSeconds((nextBreak ? pomodoroBreakMinutes : pomodoroWorkMinutes) * 60);
+            const nextSeconds = (nextBreak ? pomodoroBreakMinutes : pomodoroWorkMinutes) * 60;
             Alert.alert(nextBreak ? 'Break time!' : 'Focus time!', nextBreak ? 'Take a short break.' : 'Time to get back to work.');
-            return (nextBreak ? pomodoroBreakMinutes : pomodoroWorkMinutes) * 60;
+            return nextSeconds;
           }
           return s - 1;
         });

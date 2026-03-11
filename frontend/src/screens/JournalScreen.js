@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import * as Speech from 'expo-speech';
 import { useProfile } from '../context/ProfileContext';
 
 const MOODS = ['😊', '😐', '😢', '😤', '😴', '🤔'];
@@ -45,7 +46,6 @@ export function JournalScreen() {
   const speakEntry = useCallback(async (text) => {
     if (!ttsEnabled) return;
     try {
-      const Speech = require('expo-speech');
       await Speech.speak(text, { language: 'en' });
     } catch {
       // TTS not available

@@ -22,12 +22,18 @@ class ApiService {
     };
 
     const res = await fetch(url, { ...options, headers });
-    const data = await res.json();
 
     if (!res.ok) {
-      throw new Error(data.error || `Request failed with status ${res.status}`);
+      let errorMessage = `Request failed with status ${res.status}`;
+      try {
+        const errorData = await res.json();
+        errorMessage = errorData.error || errorMessage;
+      } catch {
+        // Response was not JSON
+      }
+      throw new Error(errorMessage);
     }
-    return data;
+    return res.json();
   }
 
   // Auth
