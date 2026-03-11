@@ -38,7 +38,7 @@ router.get('/', authenticate, async (req, res) => {
 // POST /api/tasks
 router.post('/', authenticate, async (req, res) => {
   try {
-    const { title, description, status, priority, parentTaskId, dueDate } = req.body;
+    const { title, description, status, priority, parentTaskId, dueDate, isMicroStep, stepOrder } = req.body;
     if (!title) {
       return res.status(400).json({ error: 'Title is required' });
     }
@@ -56,6 +56,8 @@ router.post('/', authenticate, async (req, res) => {
         status: status || 'todo',
         priority: priority || 0,
         parent_task_id: parentTaskId || null,
+        is_micro_step: isMicroStep || false,
+        step_order: stepOrder || 0,
         due_date: dueDate || null,
         created_at: new Date().toISOString(),
       });
@@ -70,6 +72,8 @@ router.post('/', authenticate, async (req, res) => {
         status: status || 'todo',
         priority: priority || 0,
         parent_task_id: parentTaskId || null,
+        is_micro_step: isMicroStep || false,
+        step_order: stepOrder || 0,
         due_date: dueDate || null,
       })
       .select()
@@ -86,7 +90,7 @@ router.post('/', authenticate, async (req, res) => {
 // PUT /api/tasks/:id
 router.put('/:id', authenticate, async (req, res) => {
   try {
-    const { title, description, status, priority, parentTaskId, dueDate } = req.body;
+    const { title, description, status, priority, parentTaskId, dueDate, isMicroStep, stepOrder } = req.body;
 
     if (status && !VALID_STATUSES.includes(status)) {
       return res.status(400).json({ error: `Invalid status. Must be one of: ${VALID_STATUSES.join(', ')}` });
@@ -102,6 +106,8 @@ router.put('/:id', authenticate, async (req, res) => {
     if (status !== undefined) updateData.status = status;
     if (priority !== undefined) updateData.priority = priority;
     if (parentTaskId !== undefined) updateData.parent_task_id = parentTaskId;
+    if (isMicroStep !== undefined) updateData.is_micro_step = isMicroStep;
+    if (stepOrder !== undefined) updateData.step_order = stepOrder;
     if (dueDate !== undefined) updateData.due_date = dueDate;
 
     const { data, error } = await supabase

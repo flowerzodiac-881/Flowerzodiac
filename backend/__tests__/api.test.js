@@ -135,6 +135,16 @@ describe('NeuroFlow API', () => {
       expect(res.body.title).toBe('Test task');
     });
 
+    it('POST /api/tasks creates a micro-step task', async () => {
+      const res = await request(app)
+        .post('/api/tasks')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ title: 'Step 1', isMicroStep: true, stepOrder: 1 });
+      expect(res.status).toBe(201);
+      expect(res.body.is_micro_step).toBe(true);
+      expect(res.body.step_order).toBe(1);
+    });
+
     it('POST /api/tasks rejects missing title', async () => {
       const res = await request(app)
         .post('/api/tasks')
@@ -166,6 +176,47 @@ describe('NeuroFlow API', () => {
         .send({ title: 'My day', body: 'Today was good', mood: 'happy' });
       expect(res.status).toBe(201);
       expect(res.body.title).toBe('My day');
+    });
+
+    // --- Accessibility Profile ---
+
+    it('GET /api/accessibility-profile returns default profile', async () => {
+      const res = await request(app)
+        .get('/api/accessibility-profile')
+        .set('Authorization', `Bearer ${token}`);
+      expect(res.status).toBe(200);
+      expect(res.body.pure_dark_mode).toBe(false);
+      expect(res.body.motion_reduced).toBe(false);
+      expect(res.body.dyslexic_font_enabled).toBe(false);
+      expect(res.body.macro_gestures_enabled).toBe(false);
+      expect(res.body.safe_mode_enabled).toBe(false);
+    });
+
+    it('GET /api/accessibility-profile rejects unauthenticated', async () => {
+      const res = await request(app)
+        .get('/api/accessibility-profile');
+      expect(res.status).toBe(401);
+    });
+
+    it('PUT /api/accessibility-profile updates profile', async () => {
+      const res = await request(app)
+        .put('/api/accessibility-profile')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ pure_dark_mode: true, dyslexic_font_enabled: true });
+      expect(res.status).toBe(200);
+      expect(res.body.pure_dark_mode).toBe(true);
+      expect(res.body.dyslexic_font_enabled).toBe(true);
+      // Unchanged defaults remain
+      expect(res.body.motion_reduced).toBe(false);
+    });
+
+    it('PUT /api/accessibility-profile ignores unknown fields', async () => {
+      const res = await request(app)
+        .put('/api/accessibility-profile')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ pure_dark_mode: true, hackerField: 'evil' });
+      expect(res.status).toBe(200);
+      expect(res.body.hackerField).toBeUndefined();
     });
   });
 });
