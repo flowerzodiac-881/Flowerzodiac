@@ -1,23 +1,40 @@
-# Master Prompt — 10-Minute Presentation Script
+# Master Prompt — 10-Minute PPT Presentation Script
 
-Use the following prompt with Claude (or any AI assistant) to generate a polished, engaging 10-minute self-introduction presentation script.
+Paste the prompt below into Claude (or any AI assistant) to generate a complete, slide-by-slide PowerPoint presentation script.
 
 ---
 
 ## Prompt
 
-You are a professional speechwriter and presentation coach. Using the personal and professional details provided below, write a compelling, natural-sounding **10-minute spoken presentation script** (approximately 1,200–1,400 words at a comfortable speaking pace).
+You are an expert presentation designer and speechwriter. Using the personal and professional details provided below, create a complete **PowerPoint presentation script** for a **10-minute self-introduction presentation** (approximately 8–10 slides).
 
-### Guidelines
-- Write in **first person**, as if the speaker is delivering it live to an audience.
-- Open with a **strong hook** — an anecdote, a bold statement, or a thought-provoking question that grabs attention immediately.
-- Weave together the speaker's **academic journey, professional experience, skills, and personality** into a coherent narrative rather than listing facts.
-- Include **smooth transitions** between sections so it flows like a story, not a résumé read-aloud.
-- Highlight **concrete achievements and what was learned** from each experience.
-- Let the speaker's personality shine — curious, confident, analytical, and creative.
-- End with a **memorable closing** that ties back to the opening hook and leaves the audience with a clear sense of who this person is and where they are headed.
-- Format the output as a **ready-to-deliver script** with natural pauses marked as `[pause]` where appropriate.
-- Aim for an **authentic, conversational tone** — not overly formal, not too casual.
+### Output Format
+
+For **every slide**, output the following three sections in order:
+
+```
+SLIDE [number]: [Slide Title]
+
+SLIDE CONTENT:
+• [Bullet point 1 — concise, punchy, max 10–12 words]
+• [Bullet point 2]
+• [Bullet point 3]
+(3–5 bullet points per slide; keep them short — they appear on screen)
+
+SPEAKER NOTES:
+[What the presenter says out loud for this slide — 3 to 6 natural, conversational sentences in first person. This should expand on the bullet points, not repeat them word-for-word.]
+```
+
+---
+
+### Presentation Guidelines
+
+- **Slide 1 — Title / Hook slide:** Open with a bold one-liner or thought-provoking question that grabs attention, not just a name and title.
+- **Middle slides:** Cover About Me, Education, Work Experience, Skills, and Interests — each as its own slide or logically grouped.
+- **Last slide — Closing / Vision slide:** End with where the speaker is headed and a memorable line that ties back to the opening hook.
+- Keep bullet points **scannable** — the audience reads bullets, the speaker delivers the story in the notes.
+- Speaker notes should sound **natural and confident**, not like a read-aloud of the slide.
+- Total speaking time across all speaker notes should add up to roughly **10 minutes** (~1,500–1,600 words spoken at a comfortable pace).
 
 ---
 
@@ -33,7 +50,7 @@ Currently pursuing a dual-education path: a full-time programme at Christ Univer
 1. **Research & Market Analysis Intern — Corizo (2024)**
    - Collected and analyzed prominent stock market scams
    - Developed research and collaborative skills
-   - Most enjoyed: team collaboration and joint problem-solving
+   - Favorite part: team collaboration and joint problem-solving
 
 2. **Creative Writing Trainee — MyCaptain (Ongoing)**
    - Exploring personal storytelling, blogging, and writing without creative limits
@@ -41,10 +58,10 @@ Currently pursuing a dual-education path: a full-time programme at Christ Univer
 
 **Education**
 
-- **IIM Bangalore** — BBA Digital Business and E-Commerce (Online Programme)  
+- **IIM Bangalore** — BBA Digital Business and E-Commerce (Online Programme)
   Focus: digital business strategies, e-commerce operations, online business management
 
-- **Christ University** — Management Studies  
+- **Christ University** — Management Studies
   Focus: project management, human resources, finance, marketing, sales, operations, and design
 
 **Skills**
@@ -52,11 +69,11 @@ Market Research · Creative Writing · Project Management · Financial Analysis 
 
 **Interests & Personality**
 - Music: Taylor Swift, Sabrina Carpenter, Chappell Roan, Olivia Rodrigo, Mitski, and Bollywood
-- Films & Series: *When Life Gives You Tangerines*, *The Art of Negotiation*, *The Kerala Story*, *Bastar*
-- Books: *Chaos*, *Hollywood Babylon*, *The Assault on Truth*
+- Films & Series: When Life Gives You Tangerines, The Art of Negotiation, The Kerala Story, Bastar
+- Books: Chaos, Hollywood Babylon, The Assault on Truth
 - Fascinated by conspiracy theories (e.g., the Moon Landing)
 - Personal blogger — covers writing, reviews, theories, creative explorations, and personal thoughts
 
 ---
 
-Now write the full 10-minute presentation script.
+Now generate the complete slide-by-slide PPT script.
