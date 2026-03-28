@@ -482,6 +482,45 @@ section.active {
   transform-origin: left;
 }
 
+/* === ANALYSIS SECTION === */
+.analyzer-card label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+}
+
+#transcriptInput {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 160px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.analyzer-button {
+  border: none;
+  cursor: pointer;
+}
+
+.analysis-summary {
+  margin-top: var(--spacing-sm);
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.book-results {
+  margin-top: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+}
+
+.book-results li {
+  margin-bottom: 0.35rem;
+}
+
 /* === FOOTER === */
 footer {
   background-color: #2d3436;

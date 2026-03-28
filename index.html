@@ -21,6 +21,7 @@
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#interests">Interests</a></li>
+            <li><a href="#analysis">Analysis</a></li>
             <li><a href="#blog">Blog</a></li>
         </ul>
     </nav>
@@ -149,7 +150,21 @@
             </div>
         </div>
     </section>
-    
+
+    <section id="analysis">
+        <div class="container">
+            <h2 class="section-title">Book Mention Analyzer</h2>
+            <div class="card analyzer-card">
+                <p>Paste transcripts, notes, or captions from Candace Owens videos below. This tool extracts likely book titles and deduplicates them so you can build a complete list from all available videos.</p>
+                <label for="transcriptInput">Video transcript text</label>
+                <textarea id="transcriptInput" rows="8" placeholder="Paste transcript text from one or more videos..."></textarea>
+                <button id="analyzeBooksButton" class="blog-button analyzer-button" type="button">Extract Mentioned Books</button>
+                <div id="analysisSummary" class="analysis-summary" aria-live="polite"></div>
+                <ul id="bookResults" class="book-results"></ul>
+            </div>
+        </div>
+    </section>
+     
     <section id="blog">
         <div class="container">
             <h2 class="section-title">Personal Blog</h2>
